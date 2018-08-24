@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import Task from './Task.jsx';
+
 import { Tasks } from '../api/tasks.js';
+import Task from './Task.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 class App extends Component {
@@ -28,6 +30,8 @@ class App extends Component {
     Tasks.insert({
       text,
       createdAt: new Date(),
+      owner: Meteor.userId(),           // _id of logged in user
+      username: Meteor.user().username,  // username of logged in user
     });
 
     findDOMNode(this.refs.textInput).value = '';
@@ -61,13 +65,16 @@ class App extends Component {
 
           <AccountsUIWrapper />
 
-          <form className="new-task" onSubmit={(ev) => this.handleSubmit(ev)} >
-            <input
-              type="text"
-              ref="textInput"
-              placeholder="Type to add new tasks"
-            />
-          </form>
+          {this.props.currentUser ?
+            <form className="new-task" onSubmit={(ev) => this.handleSubmit(ev)} >
+              <input
+                type="text"
+                ref="textInput"
+                placeholder="Type to add new tasks"
+              />
+            </form> : ''
+          }
+
         </header>
 
         <ul>
@@ -82,5 +89,6 @@ export default withTracker(() => {
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+    currentUser: Meteor.user(),
   };
 })(App);
