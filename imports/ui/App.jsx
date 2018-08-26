@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import AccountsUIWrapper from './others/AccountsUIWrapper.jsx';
 import Menu from './Menu/Menu.jsx';
 import ChatRoom from './ChatRoom.jsx';
 
 export default class App extends Component {
   render() {
+    const ChatRoomWithRouter = withRouter(props => <ChatRoom {...props}/>);
+
     return (
       <div className="wrapper">
         <header>
@@ -18,7 +21,7 @@ export default class App extends Component {
           </div>
 
           <div className="chat-room">
-            <ChatRoom />
+            <ChatRoomWithRouter />
           </div>
         </div>
       </div>
