@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
-import Menu from './Menu.jsx';
+import AccountsUIWrapper from './others/AccountsUIWrapper.jsx';
+import Menu from './Menu/Menu.jsx';
 import ChatRoom from './ChatRoom.jsx';
 
 export default class App extends Component {

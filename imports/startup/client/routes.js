@@ -3,7 +3,7 @@ import { Router, Route, Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import App from '/imports/ui/App.jsx';
 import Chat from '/imports/ui/Chat.jsx';
-import NotFoundPage from '/imports/ui/NotFoundPage.jsx';
+import NotFoundPage from '/imports/ui/others/NotFoundPage.jsx';
 
 const browserHistory = createBrowserHistory();
 

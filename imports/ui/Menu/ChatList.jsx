@@ -6,9 +6,9 @@ export default class Menu extends Component {
 
     this.state = {
       chatList: [
-        { id: 0, name: 'general'},
+        { id: 0, name: 'general' },
         { id: 1, name: 'dev' },
-        { id: 2, name: 'random'}
+        { id: 2, name: 'random' }
       ],
     };
   }
@@ -18,20 +18,16 @@ export default class Menu extends Component {
 
     return chats.map((chat) => {
       return (
-        <li>{chat.name}</li>
+        <li key={chat.id}>{chat.name}</li>
       );
     });
   }
 
   render() {
     return (
-      <div>
-        <h4>Select chat room</h4>
-
-        <ul>
-          {this.renderChatRooms()}
-        </ul>
-      </div>
+      <ul>
+        {this.renderChatRooms()}
+      </ul>
     );
   }
 }
