@@ -8,15 +8,15 @@ import { Messages } from '/imports/api/messages.js';
 class ChatList extends Component {
   sendMessage(event) {
     event.preventDefault();
- 
+
     const text = findDOMNode(this.refs.textInput).value.trim();
     const roomId = this.props.match.params.id;
     Meteor.call('messages.send', text, roomId);
-    
+
     findDOMNode(this.refs.textInput).value = '';
   }
 
-  renderChatRooms() {
+  renderMessages() {
     const roomId = this.props.match.params.id;
 
     // this should be done in selector
@@ -45,12 +45,15 @@ class ChatList extends Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <div>
         <ul>
-          {this.renderChatRooms()}
+          {this.renderMessages()}
         </ul>
-        {this.renderInputBox()}
+        {currentUser
+          ? this.renderInputBox()
+          : 'Please log in'}
       </div>
     );
   }
@@ -61,5 +64,6 @@ export default withTracker(() => {
 
   return {
     messages: Messages.find({}).fetch(),
+    currentUser: Meteor.user(),
   };
 })(ChatList);
