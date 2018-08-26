@@ -14,11 +14,11 @@ export default class Menu extends Component {
   }
 
   renderChatRooms() {
-    let users = this.state.users || [];
+    const users = this.props.users;
 
     return users.map((user) => {
       return (
-        <li key={user.id}>{user.name}</li>
+        <li key={user.id}>{user.username}</li>
       );
     });
   }
