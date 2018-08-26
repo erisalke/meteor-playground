@@ -7,7 +7,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <header style={{ border: 'solid pink 1px' }}>
+        <header>
           <h1>Let's talk</h1>
           <AccountsUIWrapper />
         </header>

@@ -8,7 +8,7 @@ export default class Menu extends Component {
 
     return chatRooms.map((room) =>
       <li key={room._id}>
-        <Link to={`/chat/${room.name}`}>{room.name}</Link>
+        <Link to={`/chat/${room.url}`}>{room.name}</Link>
       </li>
     );
   }
