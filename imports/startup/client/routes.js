@@ -11,7 +11,7 @@ export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Switch>
       <Route exact path="/" component={App}/>
-      <Route exact path="/chat/:id" component={Chat}/>
+      <Route exact path="/chat/:id" component={App}/>
       <Route component={NotFoundPage}/>
     </Switch>
   </Router>
