@@ -23,7 +23,7 @@ class Menu extends Component {
 
 
 export default withTracker(() => {
-  Meteor.subscribe('chatRooms')
+  Meteor.subscribe('chatRooms');
 
   return {
     chatRooms: ChatRooms.find({}).fetch(),
