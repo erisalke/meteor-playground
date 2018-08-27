@@ -17,12 +17,16 @@ class PrivateMessagesWrapper extends Component {
       .filter(({ userPair }) => userPair.includes(interlocutorId) && userPair.includes(currentUserId));
     const onSend = (text) =>
       Meteor.call('messages.sendPrivate', text, [currentUserId, interlocutorId]);
+    const onEdit = (text, messageId) => Meteor.call('messages.edit', text, messageId);
+    const onRemove = messageId => Meteor.call('messages.remove', messageId);
 
     return (
       <MessagesComponent
         messages={messages}
-        onSend={onSend}
         currentUser={currentUserId}
+        onSend={onSend}
+        onEdit={onEdit}
+        onRemove={onRemove}
       />
     );
   }
