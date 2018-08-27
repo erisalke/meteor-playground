@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
 
+
 export default class Menu extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      users: [
-        { id: 0, name: '- you -' },
-        { id: 1, name: 'Ann' },
-        { id: 2, name: 'Bob' }
-      ],
-    };
-  }
-
-  renderChatRooms() {
-    const users = this.props.users;
-
-    return users.map((user) => {
-      return (
-        <li key={user.id}>{user.username}</li>
-      );
-    });
-  }
-
   render() {
+    const { currentUser, users } = this.props;
+
+    const userList = currentUser
+      ? [currentUser, ...users.filter(u => u._id !== currentUser._id)]
+      : users;
+
     return (
       <ul>
-        {this.renderChatRooms()}
+        {userList.map((user) =>
+          <li key={user._id}>
+            <div>{user.username}</div>
+          </li>
+        )}
       </ul>
     );
   }
