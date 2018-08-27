@@ -17,7 +17,7 @@ export default class InputBox extends Component {
         <input
           type="text"
           ref="textInput"
-          placeholder="Type to send message"
+          placeholder={this.props.placeholder}
         />
       </form>
     )

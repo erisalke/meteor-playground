@@ -9,8 +9,9 @@ export default class MessagesComponent extends Component {
         <MessageList messages={this.props.messages} />
 
         {this.props.currentUser
-          ? <InputBox onSend={this.props.onSend.bind(this)} />
-          : 'Please log in!'}
+          ? <InputBox onSend={this.props.onSend.bind(this)} placeholder="Type to send message" />
+          : 'Please log in!'
+        }
       </div>
     );
   }

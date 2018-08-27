@@ -34,15 +34,15 @@ header {
 
 .new-message {
   border: solid 1px firebrick;
+  margin: 0 5px;
 }
 
 .new-message input {
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 10px 5px;
   background: transparent;
   border: none;
   width: 100%;
-  padding-right: 80px;
   font-size: 1em;
 }
  
