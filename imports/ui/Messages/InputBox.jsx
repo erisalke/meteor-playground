@@ -1,7 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 
 export default class InputBox extends Component {
+  componentDidMount() {
+    findDOMNode(this.refs.textInput).value = this.props.text || '';
+  }
+
   sendMessage(event) {
     event.preventDefault();
 
@@ -13,7 +17,10 @@ export default class InputBox extends Component {
 
   render() {
     return (
-      <form className="new-message" onSubmit={this.sendMessage.bind(this)} >
+      <form
+        className="new-message"
+        onSubmit={this.sendMessage.bind(this)}
+        style={this.props.style}>
         <input
           type="text"
           ref="textInput"

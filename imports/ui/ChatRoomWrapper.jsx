@@ -10,6 +10,7 @@ class ChatRoomWrapper extends Component {
     const currentUser = this.props.currentUser;
     const messages = this.props.messages.filter(msg => msg.room === roomId);
     const onSend = text => Meteor.call('messages.send', text, roomId);
+    const onEdit = (text, messageId) => Meteor.call('messages.edit', text, messageId);
     const onRemove = messageId => Meteor.call('messages.remove', messageId);
 
     return (
@@ -17,6 +18,7 @@ class ChatRoomWrapper extends Component {
         messages={messages}
         currentUser={currentUser}
         onSend={onSend.bind(this)}
+        onEdit={onEdit.bind(this)}
         onRemove={onRemove.bind(this)}
       />
     );

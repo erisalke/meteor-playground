@@ -30,6 +30,21 @@ Meteor.methods({
 });
 
 Meteor.methods({
+  'messages.edit'(text, messageId) {
+    check(text, String);
+    check(messageId, String);
+
+    const message = Messages.findOne(messageId);
+ 
+    if (message.owner !== this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Messages.update(messageId, { $set: { text } });
+  }
+});
+
+Meteor.methods({
   'messages.remove'(messageId) {
     check(messageId, String);
 

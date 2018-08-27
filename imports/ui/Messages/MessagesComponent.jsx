@@ -4,11 +4,15 @@ import InputBox from './InputBox';
 
 export default class MessagesComponent extends Component {
   render() {
-    const { messages, currentUser, onSend, onRemove } = this.props;
+    const { messages, currentUser, onSend, onEdit, onRemove } = this.props;
 
     return (
       <div>
-        <MessageList messages={messages} onRemove={onRemove.bind(this)}/>
+        <MessageList
+          messages={messages}
+          onEdit={onEdit.bind(this)}
+          onRemove={onRemove.bind(this)}
+        />
 
         {currentUser
           ? <InputBox
