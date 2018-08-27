@@ -4,12 +4,17 @@ import InputBox from './InputBox';
 
 export default class MessagesComponent extends Component {
   render() {
+    const { messages, currentUser, onSend, onRemove } = this.props;
+
     return (
       <div>
-        <MessageList messages={this.props.messages} />
+        <MessageList messages={messages} onRemove={onRemove.bind(this)}/>
 
-        {this.props.currentUser
-          ? <InputBox onSend={this.props.onSend.bind(this)} placeholder="Type to send message" />
+        {currentUser
+          ? <InputBox
+            placeholder="Type to send message"
+            onSend={onSend.bind(this)}
+          />
           : 'Please log in!'
         }
       </div>

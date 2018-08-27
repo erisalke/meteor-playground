@@ -15,7 +15,7 @@ Meteor.methods({
     check(text, String);
     check(room, String);
 
-    if (! this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
@@ -26,6 +26,20 @@ Meteor.methods({
       owner: this.userId,
       sender: Meteor.users.findOne(this.userId).username,
     });
+  }
+});
+
+Meteor.methods({
+  'messages.remove'(messageId) {
+    check(messageId, String);
+
+    const message = Messages.findOne(messageId);
+ 
+    if (message.owner !== this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Messages.remove(messageId);
   }
 });
 

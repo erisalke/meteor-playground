@@ -9,13 +9,15 @@ class ChatRoomWrapper extends Component {
     const roomId = this.props.match.params.id;
     const currentUser = this.props.currentUser;
     const messages = this.props.messages.filter(msg => msg.room === roomId);
-    const onSend = (text) => Meteor.call('messages.send', text, roomId);
+    const onSend = text => Meteor.call('messages.send', text, roomId);
+    const onRemove = messageId => Meteor.call('messages.remove', messageId);
 
     return (
       <MessagesComponent
         messages={messages}
-        onSend={onSend}
         currentUser={currentUser}
+        onSend={onSend.bind(this)}
+        onRemove={onRemove.bind(this)}
       />
     );
   }

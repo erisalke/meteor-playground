@@ -49,3 +49,7 @@ header {
 .new-message input:focus{
   outline: 0;
 }
+
+.message {
+  margin: 5px 0;
+}
