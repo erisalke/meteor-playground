@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Messages } from '/imports/api/messages.js';
-
+import MessageList from './MessageList';
 
 class ChatList extends Component {
   sendMessage(event) {
@@ -14,22 +14,6 @@ class ChatList extends Component {
     Meteor.call('messages.send', text, roomId);
 
     findDOMNode(this.refs.textInput).value = '';
-  }
-
-  renderMessages() {
-    const roomId = this.props.match.params.id;
-
-    // this should be done in selector
-    const messages = this.props.messages
-      .filter(msg => msg.room === roomId);
-
-    return messages.map((msg) => {
-      return (
-        <li key={msg._id} >
-          <strong>{msg.sender}</strong>: {msg.text}
-        </li>
-      );
-    });
   }
 
   renderInputBox() {
@@ -45,13 +29,14 @@ class ChatList extends Component {
   }
 
   render() {
-    const { currentUser } = this.props;
+    const roomId = this.props.match.params.id;
+    const messages = this.props.messages.filter(msg => msg.room === roomId);
+
     return (
       <div>
-        <ul>
-          {this.renderMessages()}
-        </ul>
-        {currentUser
+        <MessageList messages={messages} />
+        
+        {this.props.currentUser
           ? this.renderInputBox()
           : 'Please log in'}
       </div>

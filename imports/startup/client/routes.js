@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import Layout from '/imports/ui/Layout.jsx';
-import ChatRoom from '/imports/ui/ChatRoom.jsx';
+import ChatRoom from '/imports/ui/ChatRoom/ChatRoom.jsx';
 import NotFoundPage from '/imports/ui/others/NotFoundPage.jsx';
 
 const LoggedOut = () => (
