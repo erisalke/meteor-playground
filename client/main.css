@@ -53,3 +53,8 @@ header {
 .message {
   margin: 5px 0;
 }
+
+ul {
+  list-style: none;
+  margin-left: -20px;
+}

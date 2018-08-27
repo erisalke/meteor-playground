@@ -6,7 +6,8 @@ import MessagesComponent from './Messages/MessagesComponent';
 
 class PrivateMessagesWrapper extends Component {
   render() {
-    const currentUserId = this.props.currentUserId;
+    const currentUser = this.props.currentUser;
+    const currentUserId = currentUser._id;
     let interlocutorId = this.props.match.params.id;
 
     if (currentUserId === interlocutorId) {
@@ -23,7 +24,7 @@ class PrivateMessagesWrapper extends Component {
     return (
       <MessagesComponent
         messages={messages}
-        currentUser={currentUserId}
+        currentUser={currentUser}
         onSend={onSend}
         onEdit={onEdit}
         onRemove={onRemove}
@@ -34,9 +35,9 @@ class PrivateMessagesWrapper extends Component {
 
 export default withTracker(() => {
   Meteor.subscribe('messages');
-  
+
   return {
     messages: Messages.find({ isPrivate: { $eq: true } }).fetch(),
-    currentUserId: Meteor.userId(),
+    currentUser: Meteor.user(),
   };
 })(PrivateMessagesWrapper);

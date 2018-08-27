@@ -12,6 +12,7 @@ export default class MessagesComponent extends Component {
           messages={messages}
           onEdit={onEdit.bind(this)}
           onRemove={onRemove.bind(this)}
+          currentUser={currentUser}
         />
 
         {currentUser

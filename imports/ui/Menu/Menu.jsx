@@ -6,7 +6,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { ChatRooms } from '/imports/api/chatRooms.js';
 import InputBox from '../Messages/InputBox';
 
-
 class Menu extends Component {
   onAddChatroom(name) {
     Meteor.call('chatRooms.create', name);
@@ -18,7 +17,7 @@ class Menu extends Component {
     return (
       <div>
         <h4>Chat rooms</h4>
-        <InputBox onSend={name => this.onAddChatroom(name )} placeholder="Add chat room"/>
+        {currentUser ? <InputBox onSend={name => this.onAddChatroom(name )} placeholder="Add chat room"/> : ''}
         <ChatList chatRooms={chatRooms} />
         <h4>Users</h4>
         <UserList users={users} currentUser={currentUser} />

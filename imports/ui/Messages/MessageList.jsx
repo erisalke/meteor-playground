@@ -8,6 +8,12 @@ export default class MessageList extends Component {
     this.state = { isEditing: '' };
   }
 
+  toggleEditing(isEditing) {
+    this.state.isEditing
+      ? this.setState({ isEditing: '' })
+      : this.setState({ isEditing });
+  }
+
   renderInlineEdit(msg) {
     const formStyle = { width: "300px", border: 'dotted 1px gray', margin: '0 5px', display:'inline-block' };
 
@@ -22,9 +28,19 @@ export default class MessageList extends Component {
     )
   }
 
+  renderActionButtons(msg) {
+    return (
+      <span style={{ float: 'right' }}>
+        <button onClick={() => this.toggleEditing(msg._id)}>//</button>
+        <button onClick={() => this.props.onRemove(msg._id)}>X</button>
+      </span>
+    );
+  }
+
   render() {
-    const { messages, onEdit, onRemove } = this.props
+    const { messages, currentUser } = this.props;
     const { isEditing } = this.state;
+    const currentUserId = currentUser && currentUser._id;
 
     return (
       <ul>
@@ -37,11 +53,9 @@ export default class MessageList extends Component {
                   : msg.text}
               </span>
               
-              <span style={{ float: 'right' }}>
-                <button onClick={() => this.setState({isEditing: msg._id})}>//</button>
-                <button onClick={() => onRemove(msg._id)}>X</button>
-              </span>
-            
+              {msg.owner === currentUserId
+                ? this.renderActionButtons(msg)
+                : ''}
           </li>
         )}
       </ul>

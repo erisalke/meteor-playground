@@ -2,7 +2,6 @@ import React from 'react';
 import AccountsUIWrapper from './others/AccountsUIWrapper.jsx';
 import Menu from './Menu/Menu.jsx';
 
-
 const Layout = ({ children }) => {
   return (
     <div className="wrapper">
