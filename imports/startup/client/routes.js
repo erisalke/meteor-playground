@@ -1,17 +1,19 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router';
-import createBrowserHistory from 'history/createBrowserHistory';
-import App from '/imports/ui/App.jsx';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import Layout from '/imports/ui/Layout.jsx';
+import ChatRoom from '/imports/ui/ChatRoom.jsx';
 import NotFoundPage from '/imports/ui/others/NotFoundPage.jsx';
 
-const browserHistory = createBrowserHistory();
+const LoggedOut = () => (
+  <span>Please select a chat room</span>
+);
 
 export const renderRoutes = () => (
-  <Router history={browserHistory}>
+  <HashRouter>
     <Switch>
-      <Route exact path="/" component={App}/>
-      <Route exact path="/chat/:id" component={App}/>
-      <Route component={NotFoundPage}/>
+      <Route exact path="/" render={() => <Layout><LoggedOut /></Layout>} />
+      <Route exact path="/chat/:id" render={(props) => <Layout><ChatRoom {...props} /></Layout>} />
+      <Route component={NotFoundPage} />
     </Switch>
-  </Router>
+  </HashRouter>
 );
