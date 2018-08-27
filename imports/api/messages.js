@@ -28,3 +28,23 @@ Meteor.methods({
     });
   }
 });
+
+Meteor.methods({
+  'messages.sendPrivate'(text, userPair) {
+    check(text, String);
+    check(userPair, Array.of(String));
+
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Messages.insert({
+      userPair,
+      text,
+      isPrivate: true,
+      createdAt: new Date(),
+      owner: this.userId,
+      sender: Meteor.users.findOne(this.userId).username,
+    });
+  }
+});

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 export default class Menu extends Component {
@@ -13,7 +14,7 @@ export default class Menu extends Component {
       <ul>
         {userList.map((user) =>
           <li key={user._id}>
-            <div>{user.username}</div>
+            <Link to={`/private-message/${user._id}`}>{user.username}</Link>
           </li>
         )}
       </ul>
