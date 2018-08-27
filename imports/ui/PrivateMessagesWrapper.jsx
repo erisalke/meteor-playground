@@ -7,7 +7,11 @@ import MessagesComponent from './Messages/MessagesComponent';
 class PrivateMessagesWrapper extends Component {
   render() {
     const currentUserId = this.props.currentUserId;
-    const interlocutorId = this.props.match.params.id;
+    let interlocutorId = this.props.match.params.id;
+
+    if (currentUserId === interlocutorId) {
+      interlocutorId = 'dont-mind-me-just-thinking-outlaud';
+    }
 
     const messages = this.props.messages
       .filter(({ userPair }) => userPair.includes(interlocutorId) && userPair.includes(currentUserId));
