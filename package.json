@@ -25,5 +25,8 @@
       "client": "client/main.js",
       "server": "server/main.js"
     }
+  },
+  "devDependencies": {
+    "cypress": "^3.1.0"
   }
 }

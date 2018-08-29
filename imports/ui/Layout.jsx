@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       </header>
 
       <div className="container">
-        <div className="menu">
+        <div className="menu" data-testid="menu">
           <Menu />
         </div>
 
